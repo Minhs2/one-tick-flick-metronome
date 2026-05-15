@@ -74,6 +74,11 @@ public class OneTickFlickPlugin extends Plugin
 		Preferences preferences = client.getPreferences();
 		TimerTask delayedTick = new TimerTask() {
 			public void run() {
+				if (config.tickVolume() <= 0)
+				{
+					return;
+				}
+
 				int previousVolume = preferences.getSoundEffectVolume();
 				preferences.setSoundEffectVolume(config.tickVolume());
 				clientThread.invoke(() -> {
@@ -85,6 +90,11 @@ public class OneTickFlickPlugin extends Plugin
 
 		TimerTask delayedTock = new TimerTask() {
 			public void run() {
+				if (config.tockVolume() <= 0)
+				{
+					return;
+				}
+
 				int previousVolume = preferences.getSoundEffectVolume();
 				preferences.setSoundEffectVolume(config.tockVolume());
 				clientThread.invoke(() -> {
